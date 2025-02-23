@@ -21,6 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Home Page");
+});
+
 // Error Handling Middleware
 app.use(errorHandler);
 
