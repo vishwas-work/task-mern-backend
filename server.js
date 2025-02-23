@@ -22,7 +22,15 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Home Page");
+  // ✅ Check if database is connected
+  queryDb("SELECT 1")
+    .then(() => {
+      res.send("Database connected");
+    })
+    .catch((err) => {
+      res.status(500).send("Database connection failed");
+    });
+  // res.send("Home Page");
 });
 
 // Error Handling Middleware
